@@ -1,5 +1,5 @@
 #! /bin/bash
-# new comment
+
 help_message(){
     bold=$(tput bold)
     normal=$(tput sgr0)
