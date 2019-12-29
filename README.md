@@ -59,9 +59,9 @@
 #####  --prompt
       Provides an alternative prompt prefix for this environment.
 
-### NOTES
+#### NOTES
        For Windows users, --symlinks option is not recommended
 
-### FUTURE WORK
+#### FUTURE WORK
       1.) Add ability to create multiple venvs at one go
       2.) Set default location where all venvs would be stored.
