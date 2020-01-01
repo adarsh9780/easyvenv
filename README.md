@@ -3,10 +3,10 @@
 easyvenv.sh - Shell script to create a python3 virtual environment
 
 #### HOW TO USE
-    - Download the script at any location
-    - From the same location, run `bash easyvenv.sh`
-    - It will ask for `project_name`, enter the name and you are good to go
-    - Additionaly you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`*Some of these options are default behaviour*
+- Download the script at any location
+- From the same location, run `bash easyvenv.sh`
+- It will ask for `project_name`, enter the name and you are good to go
+- Additionaly you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`
 
 #### DESCRIPTION
 easyvenv.sh is a shell script to create python3 virtual environments(venvs).The idea behind this tool is to create venvs and setting up the shortcuts in one go.
@@ -27,28 +27,28 @@ python3 should be installed, use 'python3 --version' to check if it is installed
 
 #### OPTIONS
 
-#####  --help
+####  --help
 show this help message and exit
 
-#####  --system-site-packages
+####  --system-site-packages
 Give the virtual environment access to the system site-packages dir.
 
-#####  --symlinks
+####  --symlinks
 Try to use symlinks rather than copies, when symlinks are not the default for the platform.
 
-#####  --copies
+####  --copies
 Try to use copies rather than symlinks, even when symlinks are the default for the platform.
 
-#####  --clear
+####  --clear
 Delete the contents of the environment directory if it already exists, before environment creation.
 
-#####  --upgrade
+####  --upgrade
 Upgrade the environment directory to use this version of Python, assuming Python has been upgraded in-place.
 
-#####  --without-pip
+####  --without-pip
 Skips installing or upgrading pip in the virtual environment (pip is bootstrapped by default)
 
-#####  --prompt
+####  --prompt
 Provides an alternative prompt prefix for this environment.
 
 #### NOTES
