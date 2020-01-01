@@ -2,8 +2,11 @@
 #### NAME
 easyvenv.sh - Shell script to create a python3 virtual environment
 
-#### SYNOPSIS
-./easyvenv.sh [OPTIONS]
+#### HOW TO USE
+    - Download the script at any location
+    - From the same location, run `bash easyvenv.sh`
+    - It will ask for `project_name`, enter the name and you are good to go
+    - Additionaly you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`*Some of these options are default behaviour*
 
 #### DESCRIPTION
 easyvenv.sh is a shell script to create python3 virtual environments(venvs).The idea behind this tool is to create venvs and setting up the shortcuts in one go.
@@ -55,3 +58,6 @@ Provides an alternative prompt prefix for this environment.
     1.) Add ability to create multiple venvs at one go
     2.) Set default location where all venvs would be stored
     3.) Provision for Windows
+
+#### CONTACT
+Please reach out to me at `adarshmaurya7@gmail.com` for any bug
