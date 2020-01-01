@@ -6,13 +6,27 @@
       ./easyvenv.sh [OPTIONS]
 
 #### DESCRIPTION
-      easyvenv.sh is a shell script to create python3 virtual environments(venvs).
-      The idea behind this tool is to create venvs and setting up the shortcuts in one go. This tool uses python3's default virtual environment manager called venv.
-      The biggest advantage of this script would be its ability to store all venvs in one place. Another thing is that you don't have to install any other library/tools for your project thus keeping your environment clean. If anything goes wrong with project environment you will know where you should look.
+    pre, xmp, plaintext, listing {
+        white-space: pre;
+    }
+    .markdown-body pre > code {
+        white-space: pre;
+    }
+    .markdown-body code {
+        white-space: nowrap;
+    }
+    <pre><code>
+    easyvenv.sh is a shell script to create python3 virtual environments(venvs). The idea behind this tool is to create venvs and setting up the shortcuts in one go.
+    The script uses python3's default virtual environment manager called venv.
+    The biggest advantage of this script would be its ability to store all venvs in one place. Another thing is that you don't have to install any other library/tools for your project thus keeping your environment clean.
+    If anything goes wrong with project environment you will know where you should look.
+    </code></pre>
+
 
 #### ACTIVATE
       If this is first instance, first restart the terminal or 'source ~/.bashrc'.
-      Then 'source $<project_name>' to activate the environment. 'project_name' would be asked once the script is run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name.
+      Then 'source $<project_name>' to activate the environment. 'project_name' would be asked once the script is
+      run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name.
       To deactivate the environment, simply run 'deactivate'.
       If this is not your first time activating the environment, simply run 'source $<project_name>'
 
