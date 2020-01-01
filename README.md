@@ -10,7 +10,7 @@ easyvenv.sh - Shell script to create a python3 virtual environment
 
 #### DESCRIPTION
 easyvenv.sh is a shell script to create python3 virtual environments(venvs).The idea behind this tool is to create venvs and setting up the shortcuts in one go.
-The script uses python3's default virtual environment manager called venv.
+The script uses python3's default virtual environment manager called `venv`.
 The biggest advantage of this script would be its ability to store all venvs in one place. Another thing is that you don't have to install any other library/tools for your project thus keeping your environment clean.
 If anything goes wrong with project environment you will know where you should look.
 
