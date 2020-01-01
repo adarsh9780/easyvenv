@@ -82,7 +82,7 @@ else
     # create the environment at the given location
     python3 -m venv $args $path
     # create a variable inside bashrc file so to activate the environment from anywhere
-    echo "$project_name=\$HOME/.venvs3/"$project_name"/bin/activate" >> .bashrc
+    echo "$project_name=\$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
 
     # Some more information for end user
     printf 'Your virtual environment is located at '$path'\n' | fmt
