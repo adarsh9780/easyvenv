@@ -54,9 +54,9 @@ Provides an alternative prompt prefix for this environment.
 **This tool only works for Linux right now**
 
 #### FUTURE WORK
-    1.) Add ability to create multiple venvs at one go
-    2.) Set default location where all venvs would be stored
-    3.) Provision for Windows
+    - [] Add ability to create multiple venvs at one go
+    - [] Set default location where all venvs would be stored
+    - [] Provision for Windows
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug
