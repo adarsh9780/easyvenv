@@ -29,6 +29,9 @@ python3 should be installed, use `python3 --version` to check if it is installed
 ####  --help
 show this help message and exit
 
+####  --list
+list all the virtual environments created using this script
+
 ####  --system-site-packages
 Give the virtual environment access to the system site-packages dir.
 
@@ -54,9 +57,11 @@ Provides an alternative prompt prefix for this environment.
 **This tool only works for Linux right now**
 
 #### FUTURE WORK
-    - [] Add ability to create multiple venvs at one go
-    - [] Set default location where all venvs would be stored
-    - [] Provision for Windows
+    - Add ability to create multiple venvs at one go
+    - Set default location where all venvs would be stored
+    - Provision for Windows
+	- Add remove functionality to delete the environments
+	- if /home/bin exist, place the script there so it can be run from any location
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug
