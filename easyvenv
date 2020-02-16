@@ -17,7 +17,7 @@ help_message(){
 
     echo
     echo "${bold}ACTIVATE"
-    echo "      ${normal}If this is first instance, first restart the terminal or 'source ~/.bashrc'. Then 'source $<project_name>' to activate the environment. 'project_name' would be asked once the script is run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name. To deactivate the environment, simply run 'deactivate'" | fmt
+    echo "      ${normal}If this is first instance, restart the terminal or 'source ~/.bashrc'. Then run 'source $<project_name>' to activate the environment. 'project_name' would be asked once the script is run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name. To deactivate the environment, simply run 'deactivate'" | fmt
     echo "      ${normal}If this is not your first time activating the environment, simply run 'source $<project_name>'"
 
     echo
@@ -69,22 +69,41 @@ help_message(){
     echo "      ${normal}2.) Set default location where all venvs would be stored." | fmt
 }
 
+list(){
+	input=$HOME/'.venvs3/'envs
+	while read -r line
+	do
+		printf $line | fmt
+	done < $input
+}
+
+remove(){
+	sed "s/$2//" $HOME/.venvs3/envs
+	rm -r $HOME/.venvs3/"$2"
+}
+
 if [ "$1" == "--help" ]
 then help_message
+elif [ "$1" == '--list' ]
+then list
+elif [ "$1" == "--remove" ]
+then remove
 else
-    printf 'Welcome. This script creates a python3 virtual environment at ~/.venvs3/<Your Project Name>.\nEnter <Your Project Name> now.\n' | fmt
     #
     read -p 'Project Name : ' project_name
     # Don't need to create .venvs3, if it doesn't exist, this script will create one
     path=$HOME'/.venvs3/'$project_name
-    #catch all the argumentss
+    # catch all the arguments
     args=("$@")
     # create the environment at the given location
     python3 -m venv $args $path
     # create a variable inside bashrc file so to activate the environment from anywhere
     echo "$project_name=\$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
+	# keep a record of environments created using envs file
+	echo "$project_name" >> $HOME'/.venvs3/'envs
 
     # Some more information for end user
-    printf 'Your virtual environment is located at '$path'\n' | fmt
+    printf 'Virtual Environment Path: '$path'\n' | fmt
+	echo ''
     printf 'Restart the terminal or use "source ~/.bashrc" and then run "source $'$project_name'" to activate the environment\n' | fmt
 fi
