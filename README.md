@@ -62,6 +62,7 @@ Provides an alternative prompt prefix for this environment.
     - Provision for Windows
 	- Add remove functionality to delete the environments
 	- if /home/bin exist, place the script there so it can be run from any location
+	- separate the script options from python3's `venv` options
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug
