@@ -28,82 +28,71 @@ help_message(){
     echo "${bold}OPTIONS"
 
     echo
-    echo "  ${bold}--help"
+    echo "  ${bold}-help"
     echo "      ${normal}show this help message and exit" | fmt
 
-    echo
-    echo "  ${bold}--system-site-packages"
-    echo "      ${normal}Give the virtual environment access to the system site-packages dir." | fmt
+	echo
+    echo "  ${bold}-create"
+    echo "      ${normal}create virtual environment" | fmt
 
-    echo
-    echo "  ${bold}--symlinks"
-    echo "      ${normal}Try to use symlinks rather than copies, when symlinks are not the default for the platform." | fmt
+	echo
+    echo "  ${bold}-list"
+    echo "      ${normal}list all virtual environments created using this script" | fmt
 
-    echo
-    echo "  ${bold}--copies"
-    echo "      ${normal}Try to use copies rather than symlinks, even when symlinks are the default for the platform." | fmt
-
-    echo
-    echo "  ${bold}--clear"
-    echo "      ${normal}Delete the contents of the environment directory if it already exists, before environment creation." | fmt
-
-    echo
-    echo "  ${bold}--upgrade"
-    echo "      ${normal}Upgrade the environment directory to use this version of Python, assuming Python has been upgraded in-place." | fmt
-
-    echo
-    echo "  ${bold}--without-pip"
-    echo "      ${normal}Skips installing or upgrading pip in the virtual environment (pip is bootstrapped by default)" | fmt
-
-    echo
-    echo "  ${bold}--prompt"
-    echo "      ${normal}Provides an alternative prompt prefix for this environment." | fmt
-
-    echo
-    echo "${bold}NOTES"
-    echo "      ${normal} For Windows users, --symlinks option is not recommended" | fmt
-
-    echo
-    echo "${bold}FUTURE WORK"
-    echo "      ${normal}1.) Add ability to create multiple venvs at one go" | fmt
-    echo "      ${normal}2.) Set default location where all venvs would be stored." | fmt
+	echo
+    echo "  ${bold}-remove"
+    echo "      ${normal}remove the virtual environment created using this script" | fmt
 }
 
 list(){
 	input=$HOME/'.venvs3/'envs
 	while read -r line
 	do
-		printf $line | fmt
+		echo $line | fmt
 	done < $input
 }
 
 remove(){
-	sed "s/$2//" $HOME/.venvs3/envs
-	rm -r $HOME/.venvs3/"$2"
+	# remove the first occurence of the given project names
+	# \b word boundary: otherwise matching characters would be deleted
+	project_name=$2
+	line=$project_name=\$HOME/.venvs3/$project_name/bin/activate
+	sed -i "s/\b$2\b//" $HOME/.venvs3/envs # delete project name from envs
+	# delete command from bash
+	# sed can take any character as delimiter
+	sed -i "s@$line@@" $HOME/.bashrc
+	# delete empty lines from envs
+	sed -i '/^$/d' $HOME/.venvs3/envs
+	rm -r $HOME'/.venvs3/'$2
 }
 
-if [ "$1" == "--help" ]
-then help_message
-elif [ "$1" == '--list' ]
-then list
-elif [ "$1" == "--remove" ]
-then remove
-else
-    #
-    read -p 'Project Name : ' project_name
+create(){
     # Don't need to create .venvs3, if it doesn't exist, this script will create one
+	project_name=${@: -1}
+	venv_args=${@:2}
     path=$HOME'/.venvs3/'$project_name
-    # catch all the arguments
-    args=("$@")
+	# ${@:2} : all arguments except first and last
     # create the environment at the given location
-    python3 -m venv $args $path
+    python3 -m venv $venv_args $path
     # create a variable inside bashrc file so to activate the environment from anywhere
     echo "$project_name=\$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
 	# keep a record of environments created using envs file
 	echo "$project_name" >> $HOME'/.venvs3/'envs
 
     # Some more information for end user
-    printf 'Virtual Environment Path: '$path'\n' | fmt
+    printf 'venv path: '$path'\n' | fmt
 	echo ''
     printf 'Restart the terminal or use "source ~/.bashrc" and then run "source $'$project_name'" to activate the environment\n' | fmt
+}
+
+if [ "$1" == "-help" ]
+then help_message
+elif [ "$1" == '-list' ]
+then list
+elif [ "$1" == "-remove" ]
+then remove $@
+elif [ "$1" == "-create" ]
+then create $@
+else
+	printf "Something Unexpected happened\n"
 fi

@@ -60,9 +60,7 @@ Provides an alternative prompt prefix for this environment.
     - Add ability to create multiple venvs at one go
     - Set default location where all venvs would be stored
     - Provision for Windows
-	- Add remove functionality to delete the environments
-	- if /home/bin exist, place the script there so it can be run from any location
-	- separate the script options from python3's `venv` options
+	- When deleting virtual environments, remove the bashrc coded added
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug
