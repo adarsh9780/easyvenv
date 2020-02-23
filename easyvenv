@@ -70,19 +70,25 @@ create(){
     # Don't need to create .venvs3, if it doesn't exist, this script will create one
 	project_name=${@: -1}
 	venv_args=${@:2}
-    path=$HOME'/.venvs3/'$project_name
+	# echo "venv_args: $venv_args"
+	# echo "project: $project_name"
+    path="$HOME/.venvs3/$project_name"
 	# ${@:2} : all arguments except first and last
     # create the environment at the given location
-    python3 -m venv $venv_args $path
+	if [ $project_name = $venv_args ]; then
+		python3 -m venv $path
+	else
+    	python3 -m venv $venv_args $path
+	fi
     # create a variable inside bashrc file so to activate the environment from anywhere
-    echo "$project_name=\$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
+    echo "$project_name=$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
 	# keep a record of environments created using envs file
-	echo "$project_name" >> $HOME'/.venvs3/'envs
+	echo "$project_name" >> "$HOME/.venvs3/envs"
 
     # Some more information for end user
-    printf 'venv path: '$path'\n' | fmt
+    printf "venv path: $path\n" | fmt
 	echo ''
-    printf 'Restart the terminal or use "source ~/.bashrc" and then run "source $'$project_name'" to activate the environment\n' | fmt
+    printf "Restart the terminal or use source ~/.bashrc and then run source $"$project_name" to activate the environment\n" | fmt
 }
 
 if [ "$1" == "-help" ]

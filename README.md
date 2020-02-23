@@ -61,7 +61,6 @@ Provides an alternative prompt prefix for this environment.
     - Set default location where all venvs would be stored
     - Provision for Windows
 	- When deleting virtual environments, remove the bashrc coded added
-	- Fix bugs; envs are duplicated in the location from where the script is ran
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug
