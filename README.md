@@ -24,13 +24,18 @@ If this is not your first time activating the environment, simply run `source $<
 #### REQUISITES
 python3 should be installed, use `python3 --version` to check if it is installed. pip3 should be installed, use `pip3 --version` to check if it is installed
 
-#### OPTIONS
+#### SCRIPT OPTIONS
 
-####  --help
+####  -help
 show this help message and exit
 
-####  --list
+####  -list
 list all the virtual environments created using this script
+
+#### -remove
+remove the given virtual environment
+
+#### Python Venv Options
 
 ####  --system-site-packages
 Give the virtual environment access to the system site-packages dir.
