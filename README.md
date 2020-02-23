@@ -26,7 +26,7 @@ python3 should be installed, use `python3 --version` to check if it is installed
 
 #### SCRIPT OPTIONS
 
-####  -help
+#####  -help
 show this help message and exit
 
 ####  -list
