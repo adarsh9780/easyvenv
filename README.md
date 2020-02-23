@@ -1,25 +1,25 @@
 ### Easy Way To Make and Manage Python3 Virtual Environments
 #### NAME
-easyvenv.sh - Shell script to create a python3 virtual environment
+easyvenv.sh - A lightweight yet reliable and efficient replacement for `virtualenv`.
+
+#### USAGE
+easyvenv [-[SCRIPT OPTIONS] --[VENV OPTIONS]]
+- 1. CREATE: `easyvenv -create <project_name>`
+- 2. LIST: `easyvenv -list`
+- 3. REMOVE: `easyvenv -remove <project_name>`
 
 #### HOW TO USE
-- Download the script at any location
-- From the same location, run `bash easyvenv.sh`
-- It will ask for `project_name`, enter the name and you are good to go
-- Additionaly you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`
+- 1. Download the script at any location
+- 2. From the same location, run `bash easyvenv.sh -create <project_name>`
+- 3. Additionaly, you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`
+- 4. (OPTIONAL), place the script in $HOME/bin or $HOME/local/bin and give the script executable permissions. Add $HOME/bin or $HOME/local/bin to $PATH. Once done, script can be accessed from anywhere
 
 #### DESCRIPTION
-easyvenv.sh is a shell script to create python3 virtual environments(venvs).The idea behind this tool is to create venvs and setting up the shortcuts in one go.
-The script uses python3's default virtual environment manager called `venv`.
-The biggest advantage of this script would be its ability to store all venvs in one place. Another thing is you don't have to install any other library/tools for your project thus, keeping your environment clean.
-If anything goes wrong with your project environment you will know where you should look.
+easyvenv.sh is a bash script to create python3 virtual environments(venvs). This single tool can create, list and remove virtual environments. The design of the tool enforces some design choices on the user; all virtual environments would be stored in a same location no matter where the actual project is stored. This helps user on focusing just the project rather than managing virtual environment for different project
 
 
 #### ACTIVATE
-If this is first instance, first restart the terminal or `source ~/.bashrc`.
-Then `source $<project_name>` to activate the environment. `project_name` would be asked once the script is run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name.
-To deactivate the environment, simply run `deactivate`.
-If this is not your first time activating the environment, simply run `source $<project_name>`
+After creating the venv, run `source ~/.bashrc` (this is one time step). Once done, run `source $project_name` to activate the environment. Run `deactivate` to exit out from the environment
 
 #### REQUISITES
 python3 should be installed, use `python3 --version` to check if it is installed. pip3 should be installed, use `pip3 --version` to check if it is installed
@@ -29,33 +29,34 @@ python3 should be installed, use `python3 --version` to check if it is installed
 #####  -help
 show this help message and exit
 
-####  -list
+#####  -list
 list all the virtual environments created using this script
 
-#### -remove
+##### -remove
 remove the given virtual environment
 
-#### Python Venv Options
+#### PYTHON VENV OPTIONS
+Script option is recognized only by signle use of hyphen; `-list` is script option, but venv options are passed using double hyphen; `--symlinks` is an venv option. This highlights the fact that this script is a simple wrapper around `venv`
 
-####  --system-site-packages
+#####  --system-site-packages
 Give the virtual environment access to the system site-packages dir.
 
-####  --symlinks
+#####  --symlinks
 Try to use symlinks rather than copies, when symlinks are not the default for the platform.
 
-####  --copies
+#####  --copies
 Try to use copies rather than symlinks, even when symlinks are the default for the platform.
 
-####  --clear
+#####  --clear
 Delete the contents of the environment directory if it already exists, before environment creation.
 
-####  --upgrade
+#####  --upgrade
 Upgrade the environment directory to use this version of Python, assuming Python has been upgraded in-place.
 
-####  --without-pip
+#####  --without-pip
 Skips installing or upgrading pip in the virtual environment (pip is bootstrapped by default)
 
-####  --prompt
+#####  --prompt
 Provides an alternative prompt prefix for this environment.
 
 #### NOTES
@@ -63,8 +64,7 @@ Provides an alternative prompt prefix for this environment.
 
 #### FUTURE WORK
     - Add ability to create multiple venvs at one go
-    - Set default location where all venvs would be stored
-    - Provision for Windows
+	- Add ability to delete multiple venvs at one go
 	- When deleting virtual environments, remove the bashrc coded added
 
 #### CONTACT
