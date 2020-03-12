@@ -4,22 +4,19 @@ easyvenv.sh - A lightweight yet reliable and efficient replacement for `virtuale
 
 #### USAGE
 easyvenv [-[SCRIPT OPTIONS] --[VENV OPTIONS]]
-- 1. CREATE: `easyvenv -create <project_name>`
-- 2. LIST: `easyvenv -list`
-- 3. REMOVE: `easyvenv -remove <project_name>`
+1. CREATE: `easyvenv -create <project_name>`
+2. LIST: `easyvenv -list`
+3. REMOVE: `easyvenv -remove <project_name>`
+4. ACTIVATE: `source activate_<project_name>`, for e.g. if project name is `TEST`, then use `source activate_TEST` to activate
+5. DEACTIVATE: `deactivate`
 
-#### HOW TO USE
-- 1. Download the script at any location
-- 2. From the same location, run `bash easyvenv.sh -create <project_name>`
-- 3. Additionaly, you can pass some optional arguments as `bash easyvenv.sh [OPTIONS]`
-- 4. (OPTIONAL), place the script in $HOME/bin or $HOME/local/bin and give the script executable permissions. Add $HOME/bin or $HOME/local/bin to $PATH. Once done, script can be accessed from anywhere
+### NOTES ON USAGE:
+- After using script with any of `-create` or `-remove` option, bash has to be reloaded to apply the affect by either using `source ~/.bashrc` or restarting the terminal
+- Script can only be accessed from the location where its placed
+- To access the script from any location, create `~/.local/bin` or `~/bin`, place the script inside this folder, add the path of the folder to `$PATH` variable. Once done, script can be accessed from any location
 
 #### DESCRIPTION
 easyvenv.sh is a bash script to create python3 virtual environments(venvs). This single tool can create, list and remove virtual environments. The design of the tool enforces some design choices on the user; all virtual environments would be stored in a same location no matter where the actual project is stored. This helps user on focusing just the project rather than managing virtual environment for different project
-
-
-#### ACTIVATE
-After creating the venv, run `source ~/.bashrc` (this is one time step). Once done, run `source $project_name` to activate the environment. Run `deactivate` to exit out from the environment
 
 #### REQUISITES
 python3 should be installed, use `python3 --version` to check if it is installed. pip3 should be installed, use `pip3 --version` to check if it is installed
@@ -65,7 +62,10 @@ Provides an alternative prompt prefix for this environment.
 #### FUTURE WORK
     - Add ability to create multiple venvs at one go
 	- Add ability to delete multiple venvs at one go
-	- When deleting virtual environments, remove the bashrc coded added
+
+#### CHANGES
+- Instead of adding new variables to bashrc, create aliases
+- All the aliases will be stored in `~/.venvs3/aliases`
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug

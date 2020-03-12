@@ -56,11 +56,11 @@ remove(){
 	# remove the first occurence of the given project names
 	# \b word boundary: otherwise matching characters would be deleted
 	project_name=$2
-	line=$project_name=\$HOME/.venvs3/$project_name/bin/activate
+	line="alias activate_$project_name='source $HOME/.venvs3/$project_name/bin/activate'"
 	sed -i "s/\b$2\b//" $HOME/.venvs3/envs # delete project name from envs
 	# delete command from bash
 	# sed can take any character as delimiter
-	sed -i "s@$line@@" $HOME/.bashrc
+	sed -i "s@$line@@" $HOME/.venvs3/aliases
 	# delete empty lines from envs
 	sed -i '/^$/d' $HOME/.venvs3/envs
 	rm -r $HOME'/.venvs3/'$2
@@ -81,7 +81,7 @@ create(){
     	python3 -m venv $venv_args $path
 	fi
     # create a variable inside bashrc file so to activate the environment from anywhere
-    echo "$project_name=$HOME/.venvs3/"$project_name"/bin/activate" >> ~/.bashrc
+    echo "alias activate_$project_name='source $HOME/.venvs3/"$project_name"/bin/activate'" >> ~/.venvs3/aliases
 	# keep a record of environments created using envs file
 	echo "$project_name" >> "$HOME/.venvs3/envs"
 
