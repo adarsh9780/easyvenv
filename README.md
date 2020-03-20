@@ -64,8 +64,8 @@ Provides an alternative prompt prefix for this environment.
 	- Add ability to delete multiple venvs at one go
 
 #### CHANGES
-- Instead of adding new variables to bashrc, create aliases
-- All the aliases will be stored in `~/.venvs3/aliases`
+- Instead of adding new variables to bashrc, create aliases - Done
+- All the aliases will be stored in `~/.venvs3/aliases` - Done
 
 #### CONTACT
 Please reach out to me at `adarshmaurya7@gmail.com` for any bug

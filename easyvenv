@@ -56,18 +56,19 @@ remove(){
 	# remove the first occurence of the given project names
 	# \b word boundary: otherwise matching characters would be deleted
 	project_name=$2
+	# delete project name from envs
+	sed -i "\|$2|d" $HOME/.venvs3/envs
+
 	line="alias activate_$project_name='source $HOME/.venvs3/$project_name/bin/activate'"
-	sed -i "s/\b$2\b//" $HOME/.venvs3/envs # delete project name from envs
-	# delete command from bash
-	# sed can take any character as delimiter
-	sed -i "s@$line@@" $HOME/.venvs3/aliases
-	# delete empty lines from envs
-	sed -i '/^$/d' $HOME/.venvs3/envs
+	# delete alias
+	# sed can take any character as delimiter but firt use of that delimiter must be escaped
+	sed -i "\|$line|d" $HOME/.venvs3/aliases
+	# remove the environment
 	rm -r $HOME'/.venvs3/'$2
 }
 
 create(){
-    # Don't need to create .venvs3, if it doesn't exist, this script will create one
+    # create .venvs3 if it doesn't exist
 	project_name=${@: -1}
 	venv_args=${@:2}
 	# echo "venv_args: $venv_args"
