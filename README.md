@@ -4,10 +4,11 @@ easyvenv.sh - A lightweight yet reliable and efficient replacement for `virtuale
 
 #### USAGE
 easyvenv [-[SCRIPT OPTIONS] --[VENV OPTIONS]]
+1. INITIALIZATION: `easyvenv -init`[SHOULD BE DONE ONCE AFTER INSTALLATION]
 1. CREATE: `easyvenv -create <project_name>`
 2. LIST: `easyvenv -list`
 3. REMOVE: `easyvenv -remove <project_name>`
-4. ACTIVATE: `source activate_<project_name>`, for e.g. if project name is `TEST`, then use `source activate_TEST` to activate
+4. ACTIVATE: `activate_<project_name>`, for e.g. if project name is `TEST`, then use `activate_TEST` to activate
 5. DEACTIVATE: `deactivate`
 
 ### NOTES ON USAGE:
@@ -25,6 +26,9 @@ python3 should be installed, use `python3 --version` to check if it is installed
 
 #####  -help
 show this help message and exit
+
+#####  -init
+initialize `bashrc` so that environments can be activated
 
 #####  -list
 list all the virtual environments created using this script

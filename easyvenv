@@ -9,16 +9,16 @@ help_message(){
 
     echo
     echo "${bold}SYNOPSIS"
-    echo "      ${normal}./easyvenv.sh [OPTIONS]"
+    echo "      ${normal}./easyvenv.sh OPTIONS [PARAMETERS]"
 
     echo
     echo "${bold}DESCRIPTION"
     echo "      ${normal}easyvenv.sh is a shell script to create python3 virtual environments(venvs). The idea behind this tool is to create venvs and setting up the shortcuts in one go. This tool uses python3's default virtual environment manager called venv. The biggest advantage of this script would be its ability to store all venvs in one place." | fmt
 
     echo
-    echo "${bold}ACTIVATE"
-    echo "      ${normal}If this is first instance, restart the terminal or 'source ~/.bashrc'. Then run 'source $<project_name>' to activate the environment. 'project_name' would be asked once the script is run(this feature may change in future), so make sure you don't specify complete path, instead just pass the project name. To deactivate the environment, simply run 'deactivate'" | fmt
-    echo "      ${normal}If this is not your first time activating the environment, simply run 'source $<project_name>'"
+    echo "${bold}USAGE"
+    echo "      ${normal}1.) [ONLY ONCE] easyvenv -init"
+    echo "      2.) easyvenv OPTIONS [PARAMETERS]"
 
     echo
     echo "${bold}REQUISITES"
@@ -31,8 +31,12 @@ help_message(){
     echo "  ${bold}-help"
     echo "      ${normal}show this help message and exit" | fmt
 
+    echo
+    echo "  ${bold}-init"
+    echo "      ${normal}Initialize bashrc so that environments can be activated"
+
 	echo
-    echo "  ${bold}-create"
+    echo "  ${bold}-create <environment name to create>"
     echo "      ${normal}create virtual environment" | fmt
 
 	echo
@@ -40,8 +44,12 @@ help_message(){
     echo "      ${normal}list all virtual environments created using this script" | fmt
 
 	echo
-    echo "  ${bold}-remove"
+    echo "  ${bold}-remove <environment name to remove>"
     echo "      ${normal}remove the virtual environment created using this script" | fmt
+}
+
+init(){
+    echo "[[ -f "$HOME/.venvs3/aliases" ]] && . "$HOME/.venvs3/aliases""  >> $HOME/.bashrc
 }
 
 list(){
@@ -89,17 +97,19 @@ create(){
     # Some more information for end user
     printf "venv path: $path\n" | fmt
 	echo ''
-    printf "Restart the terminal or use source ~/.bashrc and then run source $"$project_name" to activate the environment\n" | fmt
+    printf "Restart the terminal or use source ~/.bashrc and then run activate_"$project_name" to activate the environment\n" | fmt
 }
 
 if [ "$1" == "-help" ]
-then help_message
+    then help_message
 elif [ "$1" == '-list' ]
-then list
+    then list
+elif [ "$1" == "-init" ]
+    then init
 elif [ "$1" == "-remove" ]
-then remove $@
+    then remove $@
 elif [ "$1" == "-create" ]
-then create $@
+    then create $@
 else
 	printf "Something Unexpected happened\n"
 fi
